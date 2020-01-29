@@ -22,3 +22,4 @@
 + [SEO](https://github.com/dockyard/styleguides/blob/master/ux-dev/seo.md)
 + [SVG](https://github.com/dockyard/styleguides/blob/master/ux-dev/svg.md)
 + [Pixel Perfection](https://github.com/dockyard/styleguides/blob/master/ux-dev/pixel-perfection.md)
++ [CodePen Best Practices](https://github.com/dockyard/styleguides/blob/master/ux-dev/codepen.md)
