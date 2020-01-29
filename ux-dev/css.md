@@ -94,7 +94,7 @@ All our `min-width` values should be on "whole number" e.g., `960px`, `576px`. A
 
 ## Resources
 * [MDN Web Docs](https://developer.mozilla.org/en-US/)
-* [Scalable and Modular Architecture for CSS by Jonathan Snook](https://smacss.com/)
+* [Scalable and Modular Architecture for CSS by Jonathan Snook](http://smacss.com/)
 * [CSS Secrets](http://shop.oreilly.com/product/0636920031123.do)
 * [Code Smells in CSS](http://csswizardry.com/2012/11/code-smells-in-css/)
 * [Writing DRYer vanilla CSS](http://csswizardry.com/2013/07/writing-dryer-vanilla-css/)
