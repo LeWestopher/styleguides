@@ -3,24 +3,24 @@
 ## Before the PR
 Ensure that your changes are:
 + Accurate to design: 
-   - Follow the guidelines in the [https://github.com/DockYard/styleguides/blob/master/ux-dev/pixel-perfection.md](Pixel Perfection) guide
+   - Follow the guidelines in the [pixel perfection](https://github.com/DockYard/styleguides/blob/master/ux-dev/pixel-perfection.md) guide
    - Check that copy is accurate with no spelling errors
    - Complies with any applicable style guide
 + Responsive: Check all target viewport sizes based designs and target devices
 + Accessible:
-  - Follow guidelines in the [https://github.com/DockYard/styleguides/blob/master/ux-dev/accessibility-a11y.md](accessibility) guide
+  - Follow guidelines in the [accessibility](https://github.com/DockYard/styleguides/blob/master/ux-dev/accessibility-a11y.md) guide
   - Test for keyboard usability 
   - Test with screen reader
 + Usable: check all related interactive elements for expected functionality, flows, and states
 + Performant: use the browser's performance monitor panel to assess the impact of your changes
 + Compatible:
   - Check all browsers in support target
-  - Use an [https://validator.w3.org/](HTML validator)
+  - Use an [HTML validator](https://validator.w3.org/)
   - Optional for browsers/devices have different compatibility needs:
     + progressive enhancements
     + fallbacks
     + polyfills
-    + @supports
+    + `@supports`
 
 ## Making the PR
 As a general rule, it is not possible to be _too_ detailed in your PR descriptions. Having a PR description template can prompt you to add helpful information. Here is an example template:
@@ -56,7 +56,7 @@ Here are some simple ways to make your visuals of the changes be as helpful as p
 + Gifs of the app changes:
   - Capture before and after
   - Ideal for PRs where the changes include multiple component states, animations/transitions, or interactions
-  - [https://www.cockos.com/licecap/](LICEcap) is a free gif recording tool
+  - [LICEcap](https://www.cockos.com/licecap/) is a free gif recording tool
 
 If you do record gifs, the repetition of the captured loop can sometimes reveal missed details. 
 
