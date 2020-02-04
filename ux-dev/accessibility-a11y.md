@@ -18,7 +18,7 @@ The following keyboard commands are helpful:
 - `Enter` to activate links and buttons
 - `Space` to activate checkboxes and buttons
 
-You may need to enable tab navigation in Firefox for Mac. There is more information [https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Accessibility#Using_native_keyboard_accessibility](here) at the first bullet point of the "Using native keyboard accessibility" section.
+You may need to enable tab navigation in Firefox for Mac. There is more information [here](https://developer.mozilla.org/en-US/docs/Learn/Tools_and_testing/Cross_browser_testing/Accessibility#Using_native_keyboard_accessibility) at the first bullet point of the "Using native keyboard accessibility" section.
 
 ### Screenreader Testing
 All screenreaders will read markup in slightly different ways. Manually testing your work with a screenreader is important because it allows you to confirm that any items that need hidden text have it available, that your hidden text makes sense, and that any extraneous information is hidden from the screenreaders.
