@@ -70,7 +70,7 @@ TBD
 
 ### Organization
 
-Text Text Text
+TBD
 
 ```js
 // Good
@@ -83,7 +83,7 @@ Text Text Text
 
 ### Binding via arrow function
 
-Text Text Text
+TBD
 
 ## Component Best Practices
 
@@ -145,7 +145,7 @@ export default Clock;
 
 ### Use default argument values to create default values for components
 
-Text Text Text
+TBD
 
 ```javascript
 
@@ -240,7 +240,7 @@ useEffect(() => {
 
 ## Using Index as Key Props
 
-Text Text Text
+TBD
 ```js
 // good
 
