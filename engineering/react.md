@@ -58,7 +58,7 @@ const loadConfigFromServer = () => {
 
 ## Minimizing Stateful Components
 
-Text Text Text
+TBD
 
 
 ```js
@@ -81,7 +81,7 @@ Text Text Text
 
 ## Properly Binding Class Components
 
-### Define query params first
+### Binding via arrow function
 
 Text Text Text
 
@@ -166,7 +166,7 @@ const User = ({ id }) => {
   const [user, setUser] = useState()
 
   useEffect(() => {
-    return fetchUser(this.props.id)
+    return fetchUser(id)
       .then((user) => {
         setIsLoading(false)
         setUser(user)
@@ -201,7 +201,7 @@ const withFetchUser = (RenderUserComponent) => ({ id }) => {
   const [user, setUser] = useState()
 
   useEffect(() => {
-    return fetchUser(this.props.id)
+    return fetchUser(id)
       .then((user) => {
         setIsLoading(false)
         setUser(user)
@@ -229,7 +229,7 @@ const [isLoading, setIsLoading] = useState(true)
 const [user, setUser] = useState()
 
 useEffect(() => {
-  return fetchUser(this.props.id)
+  return fetchUser(id)
     .then((user) => {
       setIsLoading(false)
       setUser(user)
