@@ -4,6 +4,7 @@
 
 + [Elixir](https://github.com/DockYard/styleguides/blob/master/engineering/elixir.md)
 + [Ember](https://github.com/DockYard/styleguides/blob/master/engineering/ember.md)
++ [React](https://github.com/DockYard/styleguides/blob/master/engineering/react.md)
 + [Handlebars](https://github.com/DockYard/styleguides/blob/master/engineering/handlebars.md)
 + [JavaScript](https://github.com/DockYard/styleguides/blob/master/engineering/javascript.md)
 + [Ruby](https://github.com/DockYard/styleguides/blob/master/engineering/ruby.md)
