@@ -123,10 +123,10 @@ import { fetchTime } from './api'
 const Clock = () => {
   const [currentTime, setCurrentTime] = useState()
   
-  useEffect(() => {
+  useEffect(async () => {
     // Will run once the component is mounted
-    fetchTime()
-      .then(currentTime => setCurrentTime(currentTime))
+    const currentTime = await fetchTime()
+    setCurrentTime(currentTime)
   })
 
   return (
@@ -141,19 +141,38 @@ const Clock = () => {
 export default Clock;
 ```
 
-
-
 ### Use default argument values to create default values for components
 
-TBD
+When creating components that you will heavily re-use, it's often a good idea to set default values for the props that only sometimes require changing.  For example, let's say we have an SVG Icon component with a configurable size prop:
 
-```javascript
+```JSX
+import React from 'react'
 
+// Bad
+const WebIcon = ({ icon, size }) => {
+  size = size || 'medium'
+  const sizeClass = `icon-size-${size}`
+  const imgSrc = `/assets/img/svg/icon-${icon}.svg`
+  return (
+    <img src={imgSrc} className={sizeClass} />
+  )
+}
+
+// Good
+const WebIcon = ({ icon, size = 'medium' }) => {
+  const sizeClass = `icon-size-${size}`
+  const imgSrc = `/assets/img/svg/icon-${icon}.svg`
+  return (
+    <img src={imgSrc} className={sizeClass} />
+  )
+}
+
+export default WebIcon
 ```
 
 ### Separate stateful aspects from rendering
 
-Having state functionality mixed with rendering makes for harder code to test.  For example, we would not be able to test the rendering functionality of the following User component in isolation due to the 
+Having state functionality mixed with rendering makes for harder code to test.  For example, we would not be able to test the rendering functionality of the following User component in isolation due to the necessity for HTTP access in the effect hook.  
 
 ```javascript
 // Bad
@@ -165,25 +184,23 @@ const User = ({ id }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState()
 
-  useEffect(() => {
-    return fetchUser(id)
-      .then((user) => {
-        setIsLoading(false)
-        setUser(user)
-      })
+  useEffect(async () => {
+    const user = await fetchUser(id)
+    setIsLoading(false)
+    setUser(user)
   })
 
   return loading
-      ? (<div>Loading...</div>)
-      : (<div>
-          <div>
-            First name: {user.firstName}
-          </div>
-          <div>
-            First name: {user.lastName}
-          </div>
-          ...
-        </div>);
+    ? (<div>Loading...</div>)
+    : (<div>
+        <div>
+          First name: {user.firstName}
+        </div>
+        <div>
+          First name: {user.lastName}
+        </div>
+        ...
+      </div>);
 }
 ```
 To avoid this, we can utilize a decorator pattern via React's higher order components pattern.  In this example, we seperate the rendering logic into a dynamically rendered component that accepts a `user` prop.  Now the rendering logic can be tested cleanly in isolation without worrying about the accessing the state or HTTP services.
@@ -200,12 +217,10 @@ const withFetchUser = (RenderUserComponent) => ({ id }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState()
 
-  useEffect(() => {
-    return fetchUser(id)
-      .then((user) => {
-        setIsLoading(false)
-        setUser(user)
-      })
+  useEffect(async () => {
+    const user = await fetchUser(id)
+    setIsLoading(false)
+    setUser(user)
   })
 
   return loading
@@ -228,13 +243,11 @@ const id = props.id
 const [isLoading, setIsLoading] = useState(true)
 const [user, setUser] = useState()
 
-useEffect(() => {
-  return fetchUser(id)
-    .then((user) => {
-      setIsLoading(false)
-      setUser(user)
-    })
-}, [id])
+useEffect(async () => {
+  const user = await fetchUser(id)
+  setIsLoading(false)
+  setUser(user)
+}, [id]) // The effect is only run again if the ID passed here changes
 
 ```
 
