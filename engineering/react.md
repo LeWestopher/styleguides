@@ -56,6 +56,43 @@ const loadConfigFromServer = () => {
 };
 ```
 
+### Higher Order Component (HOC) decorator functions should be prefixed with the word "with".
+
+Doing so clearly indicates the function's nature as a decorator and is consistent with other common React naming patterns among mainstream libraries.
+
+```JSX
+// Bad
+const includeState = () => { ... }
+const decorateWithState = () => { ... }
+const state = () => { ... }
+
+// Good
+const withState = () => { ... }
+```
+
+### When exposing a public interface function for your components, such as for accessing and updating the state, the function should be prefixed with the word "use".
+
+It is a common pattern in functional React to expose public access to a library's API via functions prefixed with the word "use".  Continuing to follow this pattern helps with code reuse, seperation of concerns, and pays dividends when it comes to your IDE's autocomplete.
+
+```JSX
+// state/auth.js
+import { useDispatch, useSelector } from 'react-redux'
+
+// Bad
+const auth = () => {
+  const attemptLogin = useDispatch('ATTEMPT_LOGIN')
+  const isLoggedIn = useSelector(state => state.isLoggedIn)
+  return { attemptLogin, isLoggedIn }
+}
+
+// Good
+const useAuth = () => {
+  const attemptLogin = useDispatch('ATTEMPT_LOGIN')
+  const isLoggedIn = useSelector(state => state.isLoggedIn)
+  return { attemptLogin, isLoggedIn }
+}
+```
+
 ## Minimizing Stateful Components
 
 TBD
