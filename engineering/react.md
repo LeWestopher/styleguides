@@ -277,10 +277,20 @@ useEffect(async () => {
 
 ## Using Index as Key Props
 
-TBD
-```js
-// good
+React requires that rendered lists contain a unique ID as the key prop of the iterated element.  It is also suggested that this unique ID *not* be the array index.  Instead the unique ID should be a uniquedly generated database ID such as a MongoDB ObjectId.
 
-// bad
+```JSX
+import { useTodos } from './state'
 
+const TodoList = () => {
+  const { allTodos } = useTodos()
+
+  return (
+    <ul>
+      {allTodos.map(todo => (
+        <li key={todo._id}>{todo.label}</li>
+      ))}
+    </ul>
+  )
+}
 ```
