@@ -68,14 +68,38 @@ TBD
 
 ## Component Interface Composition
 
-### Organization
+Modern functional React (and many other libraries, such as Redux) follows a consistent API pattern of functions being prefixed with the word "use" to denote a functional interface.    We can follow that same pattern to extend and compose those APIs into useable bits for our application.
 
-TBD
+```JSX
+// state.js
+import { useSelector, useDispatch } from 'react-redux'
 
-```js
-// Good
+export function useTodos() {
+  const allTodos = useSelector(state => state.todos.all)
+  const newTodo = useSelector(state => state.todos.new)
+  const addTodo = useDispatch('ADD_TODO')
+  const removeTodo = useDispatch('REMOVE_TODO')
+  return { allTodos, addTodo, removeTodo, newTodo }
+}
 
-// Bad
+// components/TodoList.js
+import { useTodos } from './state'
+
+const TodoList = () => {
+  // All necessary state management functions are neatly packaged into one fn
+  const { allTodos, addTodo, removeTodo, newTodo } = useTodos()
+
+  return (
+    <ul>
+      {allTodos.map(todo => (
+        <li key={todo.id}>{todo.label} <button onClick={(e) => removeTodo(e)}>Remove</button>
+      ))}
+      <li>
+        <input type="text" placeholder="New To Do" value={newTodo} onChange={addTodo} />
+      </li>
+    </ul>
+  )
+}
 
 ```
 
