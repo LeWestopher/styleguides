@@ -62,12 +62,12 @@ Doing so clearly indicates the function's nature as a decorator and is consisten
 
 ```JSX
 // Bad
-const includeState = () => { ... }
-const decorateWithState = () => { ... }
-const state = () => { ... }
+const includeState = () => { ... };
+const decorateWithState = () => { ... };
+const state = () => { ... };
 
 // Good
-const withState = () => { ... }
+const withState = () => { ... };
 ```
 
 ### When exposing a public interface function for your components, such as for accessing and updating the state, the function should be prefixed with the word "use".
