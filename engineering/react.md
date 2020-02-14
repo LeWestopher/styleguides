@@ -76,21 +76,21 @@ It is a common pattern in functional React to expose public access to a library'
 
 ```JSX
 // state/auth.js
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 
 // Bad
 const auth = () => {
-  const attemptLogin = useDispatch('ATTEMPT_LOGIN')
-  const isLoggedIn = useSelector(state => state.isLoggedIn)
-  return { attemptLogin, isLoggedIn }
-}
+  const attemptLogin = useDispatch('ATTEMPT_LOGIN');
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
+  return { attemptLogin, isLoggedIn };
+};
 
 // Good
 const useAuth = () => {
-  const attemptLogin = useDispatch('ATTEMPT_LOGIN')
-  const isLoggedIn = useSelector(state => state.isLoggedIn)
-  return { attemptLogin, isLoggedIn }
-}
+  const attemptLogin = useDispatch('ATTEMPT_LOGIN');
+  const isLoggedIn = useSelector(state => state.isLoggedIn);
+  return { attemptLogin, isLoggedIn };
+};
 ```
 
 ## Minimizing Stateful Components
@@ -109,22 +109,22 @@ Modern functional React (and many other libraries, such as Redux) follows a cons
 
 ```JSX
 // state.js
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 
 export function useTodos() {
-  const allTodos = useSelector(state => state.todos.all)
-  const newTodo = useSelector(state => state.todos.new)
-  const addTodo = useDispatch('ADD_TODO')
-  const removeTodo = useDispatch('REMOVE_TODO')
-  return { allTodos, addTodo, removeTodo, newTodo }
-}
+  const allTodos = useSelector(state => state.todos.all);
+  const newTodo = useSelector(state => state.todos.new);
+  const addTodo = useDispatch('ADD_TODO');
+  const removeTodo = useDispatch('REMOVE_TODO');
+  return { allTodos, addTodo, removeTodo, newTodo };
+};
 
 // components/TodoList.js
-import { useTodos } from './state'
+import { useTodos } from './state';
 
 const TodoList = () => {
   // All necessary state management functions are neatly packaged into one fn
-  const { allTodos, addTodo, removeTodo, newTodo } = useTodos()
+  const { allTodos, addTodo, removeTodo, newTodo } = useTodos();
 
   return (
     <ul>
@@ -135,8 +135,8 @@ const TodoList = () => {
         <input type="text" placeholder="New To Do" value={newTodo} onChange={addTodo} />
       </li>
     </ul>
-  )
-}
+  );
+};
 
 ```
 
@@ -154,22 +154,22 @@ With the latest versions of React, there is little reason to opt for class based
 
 ```JSX
 // Bad
-import React, { Component } from 'react'
-import { fetchTime } from './api'
+import React, { Component } from 'react';
+import { fetchTime } from './api';
 
 class Clock extends Component {
   render () {
-    const { currentTime } = this.state
+    const { currentTime } = this.state;
     return (<div>
       <div>
         Current Time: {currentTime}
       </div>
-    </div>)
+    </div>);
   }
 
   componentDidMount() {
     fetchTime()
-      .then(currentTime => { this.setState({ currentTime })})
+      .then(currentTime => { this.setState({ currentTime })});
   }
 }
 ```
@@ -178,17 +178,17 @@ Instead you can use a functional component using `useState()` and `useEffect()`:
 
 ```JSX
 // Good
-import React, { useEffect } from 'react'
-import { fetchTime } from './api'
+import React, { useEffect } from 'react';
+import { fetchTime } from './api';
 
 const Clock = () => {
-  const [currentTime, setCurrentTime] = useState()
+  const [currentTime, setCurrentTime] = useState();
   
   useEffect(async () => {
     // Will run once the component is mounted
-    const currentTime = await fetchTime()
-    setCurrentTime(currentTime)
-  })
+    const currentTime = await fetchTime();
+    setCurrentTime(crrentTime);
+  });
 
   return (
     <div>
@@ -196,8 +196,8 @@ const Clock = () => {
         Current Time: {currentTime}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Clock;
 ```
@@ -207,28 +207,28 @@ export default Clock;
 When creating components that you will heavily re-use, it's often a good idea to set default values for the props that only sometimes require changing.  For example, let's say we have an SVG Icon component with a configurable size prop:
 
 ```JSX
-import React from 'react'
+import React from 'react';
 
 // Bad
 const WebIcon = ({ icon, size }) => {
-  size = size || 'medium'
-  const sizeClass = `icon-size-${size}`
-  const imgSrc = `/assets/img/svg/icon-${icon}.svg`
+  size = size || 'medium';
+  const sizeClass = `icon-size-${size}`;
+  const imgSrc = `/assets/img/svg/icon-${icon}.svg`;
   return (
     <img src={imgSrc} className={sizeClass} />
-  )
+  );
 }
 
 // Good
 const WebIcon = ({ icon, size = 'medium' }) => {
-  const sizeClass = `icon-size-${size}`
-  const imgSrc = `/assets/img/svg/icon-${icon}.svg`
+  const sizeClass = `icon-size-${size}`;
+  const imgSrc = `/assets/img/svg/icon-${icon}.svg`;
   return (
     <img src={imgSrc} className={sizeClass} />
-  )
+  );
 }
 
-export default WebIcon
+export default WebIcon;
 ```
 
 ### Separate stateful aspects from rendering
@@ -237,19 +237,19 @@ Having state functionality mixed with rendering makes for harder code to test.  
 
 ```javascript
 // Bad
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { fetchUser } from './api';
 
 const User = ({ id }) => {
 
-  const [isLoading, setIsLoading] = useState(true)
-  const [user, setUser] = useState()
+  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState();
 
   useEffect(async () => {
-    const user = await fetchUser(id)
-    setIsLoading(false)
-    setUser(user)
-  })
+    const user = await fetchUser(id);
+    setIsLoading(false);
+    setUser(user);
+  });
 
   return loading
     ? (<div>Loading...</div>)
@@ -275,14 +275,14 @@ import Loading from './Loading';
 
 const withFetchUser = (RenderUserComponent) => ({ id }) => {
 
-  const [isLoading, setIsLoading] = useState(true)
-  const [user, setUser] = useState()
+  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState();
 
   useEffect(async () => {
-    const user = await fetchUser(id)
-    setIsLoading(false)
-    setUser(user)
-  })
+    const user = await fetchUser(id);
+    setIsLoading(false);
+    setUser(user);
+  });
 
   return loading
       ? (<Loading />)
@@ -290,7 +290,7 @@ const withFetchUser = (RenderUserComponent) => ({ id }) => {
 }
 
 // Usage
-const UserComponent = withFetchUser(RenderableUserComponent)
+const UserComponent = withFetchUser(RenderableUserComponent);
 ```
 
 ### Optimize render efficiency by skipping non-needed updates
@@ -300,15 +300,15 @@ An array can be passed into the second argument of `useEffect()` that will deter
 ```JSX
 // In our withFetchUser HOC:
 
-const id = props.id
-const [isLoading, setIsLoading] = useState(true)
-const [user, setUser] = useState()
+const id = props.id;
+const [isLoading, setIsLoading] = useState(true);
+const [user, setUser] = useState();
 
 useEffect(async () => {
-  const user = await fetchUser(id)
-  setIsLoading(false)
-  setUser(user)
-}, [id]) // The effect is only run again if the ID passed here changes
+  const user = await fetchUser(id);
+  setIsLoading(false);
+  setUser(user);
+}, [id]); // The effect is only run again if the ID passed here changes
 
 ```
 
@@ -317,10 +317,10 @@ useEffect(async () => {
 React requires that rendered lists contain a unique ID as the key prop of the iterated element.  It is also suggested that this unique ID *not* be the array index.  Instead the unique ID should be a uniquedly generated database ID such as a MongoDB ObjectId.
 
 ```JSX
-import { useTodos } from './state'
+import { useTodos } from './state';
 
 const TodoList = () => {
-  const { allTodos } = useTodos()
+  const { allTodos } = useTodos();
 
   return (
     <ul>
@@ -328,6 +328,6 @@ const TodoList = () => {
         <li key={todo._id}>{todo.label}</li>
       ))}
     </ul>
-  )
-}
+  );
+};
 ```
